@@ -12,6 +12,7 @@
     behaviors {
         quote: single_quote_double_quotes {
             compatible = "zmk,behavior-mod-morph";
+            label = "QUOTES";
             #binding-cells = <0>;
             bindings = <&kp SINGLE_QUOTE>, <&kp DOUBLE_QUOTES>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
