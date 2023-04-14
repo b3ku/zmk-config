@@ -9,6 +9,20 @@
 #include <dt-bindings/zmk/bt.h>
 
 / {
+    combos {
+        compatible = "zmk,combos";
+        combo_et {
+            timeout-ms = <50>;
+            key-positions = <3 5>;
+            bindings = <&kp LS(N7)>;
+        };
+        combo_si {
+            timeout-ms = <50>;
+            key-positions = <8 14>;
+            bindings = <&kp LS(N4)>;
+        };
+    };
+
     behaviors {
         quote: single_quote_double_quotes {
             compatible = "zmk,behavior-mod-morph";
@@ -65,7 +79,7 @@
             //               | DOWN | UP | SPC |        | RET | BSPC | DEL |
             bindings = <
                 &none   &kp Q   &kp W   &kp E   &kp R   &kp T       &kp Y    &kp U   &kp I   &kp O   &kp P  &none
-                &none   &hm LCTRL A   &hm LALT S   &hm LSHIFT D   &hm LGUI F   &kp G        &kp H    &hm RGUI J   &hm RSHIFT K   &hm RALT L   &hm_quote RCTRL  &none
+                &none   &hm LCTRL A   &hm LALT S   &hm LSHIFT D   &hm LGUI F   &kp G        &kp H    &hm RGUI J   &hm RSHIFT K   &hm RALT L   &hm_quote RCTRL &none  &none
                 &none   &kp Z   &kp X   &kp C   &kp V   &kp B       &kp N    &kp M   &comma &dot    &kp SLASH  &none
                                     &kp DOWN    &kp UP  &kp SPACE      &kp RET  &kp BSPC    &kp DEL
             >;
