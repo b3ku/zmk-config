@@ -14,7 +14,7 @@
         combo_et {
             timeout-ms = <50>;
             key-positions = <3 5>;
-            bindings = <&kp LS(N7)>;
+            bindings = <&kp LS(N6)>;
         };
         combo_si {
             timeout-ms = <50>;
@@ -66,6 +66,56 @@
             flavor = "balanced";
             bindings = <&kp>, <&quote>;
         };
+
+        td_quote: td_quote {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TAP_DANCE_QUOTE";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&hm_quote RCTRL &none>, <&kp LS(EQUAL)>;
+        };
+        td_i_pipe: td_i_pipe {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TAP_DANCE_I_PIPE";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp I>, <&kp LA(N7)>;
+        };
+        td_a_ae: td_a_ae {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TAP_DANCE_A_AE";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&hm LCTRL A>, <&kp COMMA>;
+        };
+        td_o_oe: td_o_oe {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TAP_DANCE_O_OE";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp O>, <&kp SEMICOLON>;
+        };
+        td_u_ue: td_u_ue {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TAP_DANCE_U_UE";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp U>, <&kp LEFT_BRACKET>;
+        };
+        td_s_ss: td_s_ss {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TAP_DANCE_S_SS";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&hm LALT S>, <&kp MINUS>;
+        };
+        td_d_capsword: td_d_capsword {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TAP_DANCE_D_CAPSWORD";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&hm LSHIFT D>, <&caps_word>;
+        };
     };
 
     keymap {
@@ -78,8 +128,8 @@
             // | |  Z  |  X  |  C  |  V  |  B  |        |  N  |  M   |  ,  |  .  |  -  | |
             //               | DOWN | UP | SPC |        | RET | BSPC | DEL |
             bindings = <
-                &none   &kp Q   &kp W   &kp E   &kp R   &kp T       &kp Y    &kp U   &kp I   &kp O   &kp P  &none
-                &none   &hm LCTRL A   &hm LALT S   &hm LSHIFT D   &hm LGUI F   &kp G        &kp H    &hm RGUI J   &hm RSHIFT K   &hm RALT L   &hm_quote RCTRL &none  &none
+                &none   &kp Q   &kp W   &kp E   &kp R   &kp T       &kp Y    &td_u_ue   &td_i_pipe   &td_o_oe   &kp P  &none
+                &none   &td_a_ae   &td_s_ss   &td_d_capsword   &hm LGUI F   &kp G        &kp H    &hm RGUI J   &hm RSHIFT K   &hm RALT L   &td_quote  &none
                 &none   &kp Z   &kp X   &kp C   &kp V   &kp B       &kp N    &kp M   &comma &dot    &kp SLASH  &none
                                     &kp DOWN    &kp UP  &kp SPACE      &kp RET  &kp BSPC    &kp DEL
             >;
