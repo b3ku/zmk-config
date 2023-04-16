@@ -8,6 +8,10 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
 
+&lt {
+    retro-tap;
+};
+
 / {
     combos {
         compatible = "zmk,combos";
@@ -131,7 +135,35 @@
                 &none   &kp Q   &kp W   &kp E   &kp R   &kp T       &kp Y    &td_u_ue   &td_i_pipe   &td_o_oe   &kp P  &none
                 &none   &td_a_ae   &td_s_ss   &td_d_capsword   &hm LGUI F   &kp G        &kp H    &hm RGUI J   &hm RSHIFT K   &hm RALT L   &td_quote  &none
                 &none   &kp Z   &kp X   &kp C   &kp V   &kp B       &kp N    &kp M   &comma &dot    &kp SLASH  &none
-                                    &kp DOWN    &kp UP  &kp SPACE      &kp RET  &kp BSPC    &kp DEL
+                                    &lt 2 DOWN    &lt 1 UP  &hm CAPSLOCK SPACE      &hm CAPSLOCK RET  &kp BSPC    &kp DEL
+            >;
+        };
+
+        fn_layer {
+            // -----------------------------------------------------------------------------------------
+            // | |       |      |        |      | |        | | | | | | |
+            // | | LCTRL | LALT | LSHIFT | LGUI | |        | | | | | | |
+            // | |       |      |        |      | |        | | | | | | |
+            //                              | | | |        | ESC | LEFT | RIGHT |
+            bindings = <
+                &trans   &none       &none      &none        &none      &none       &none    &none   &none   &none   &none  &trans
+                &trans   &kp LCTRL   &kp LALT   &kp LSHIFT   &kp LGUI   &none       &none    &none   &none   &none   &none  &trans
+                &trans   &none       &none      &none        &none      &none       &none    &none   &none   &none   &none  &trans
+                                                &none        &none      &none       &hm CAPSLOCK ESC    &kp LEFT   &kp DOWN
+            >;
+        };
+
+        num_layer {
+            // -----------------------------------------------------------------------------------------
+            // | |       |      |        |      | |        | | | | | | |
+            // | | LCTRL | LALT | LSHIFT | LGUI | |        | | | | | | |
+            // | |       |      |        |      | |        | | | | | | |
+            //                              | | | |        | TAB | < | > |
+            bindings = <
+                &trans  &trans  &trans  &trans  &trans  &trans       &none    &none   &none   &none   &none  &trans
+                &trans  &trans  &trans  &trans  &trans  &trans       &none    &none   &none   &none   &none  &trans
+                &trans  &trans  &trans  &trans  &trans  &trans       &none    &none   &none   &none   &none  &trans
+                                        &trans  &trans  &trans       &hm CAPSLOCK TAB    &kp GRAVE   &kp LS(GRAVE)
             >;
         };
     };
