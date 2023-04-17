@@ -20,19 +20,25 @@
             key-positions = <3 5>;
             bindings = <&kp LS(N6)>;
         };
-        combo_si {
-            timeout-ms = <50>;
-            key-positions = <8 14>;
-            bindings = <&kp LS(N4)>;
-        };
     };
 
     behaviors {
+        hm: homerow_mods {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HOMEROW_MODS";
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            quick-tap-ms = <50>;
+            retro-tap;
+            flavor = "balanced";
+            bindings = <&kp>, <&kp>;
+        };
+
         quote: single_quote_double_quotes {
             compatible = "zmk,behavior-mod-morph";
             label = "QUOTE";
             #binding-cells = <0>;
-            bindings = <&kp LS(NUHS)>, <&kp LS(N2)>;
+            bindings = <&hm RCTRL LS(NUHS)>, <&kp LS(N2)>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
         comma: comma_qmark {
@@ -49,26 +55,12 @@
             bindings = <&kp DOT>, <&kp LS(N1)>;
             mods = <(MOD_LALT|MOD_RALT)>;
         };
-
-        hm: homerow_mods {
-            compatible = "zmk,behavior-hold-tap";
-            label = "HOMEROW_MODS";
-            #binding-cells = <2>;
-            tapping-term-ms = <200>;
-            quick-tap-ms = <50>;
-            retro-tap;
-            flavor = "balanced";
-            bindings = <&kp>, <&kp>;
-        };
-        hm_quote: homerow_mods_quote {
-            compatible = "zmk,behavior-hold-tap";
-            label = "HOMEROW_MODS_QUOTE";
-            #binding-cells = <2>;
-            tapping-term-ms = <200>;
-            quick-tap-ms = <50>;
-            retro-tap;
-            flavor = "balanced";
-            bindings = <&kp>, <&quote>;
+        dollar: dot_dollar {
+            compatible = "zmk,behavior-mod-morph";
+            label = "DOLLAR";
+            #binding-cells = <0>;
+            bindings = <&hm LALT S>, <&kp LS(N4)>;
+            mods = <(MOD_LALT|MOD_RALT)>;
         };
 
         td_quote: td_quote {
@@ -76,7 +68,7 @@
             label = "TAP_DANCE_QUOTE";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
-            bindings = <&hm_quote RCTRL &none>, <&kp LS(EQUAL)>;
+            bindings = <&quote>, <&kp LS(EQUAL)>;
         };
         td_i_pipe: td_i_pipe {
             compatible = "zmk,behavior-tap-dance";
@@ -84,6 +76,13 @@
             #binding-cells = <0>;
             tapping-term-ms = <200>;
             bindings = <&kp I>, <&kp LA(N7)>;
+        };
+        td_h_hash: td_h_hash {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TAP_DANCE_H_HASH";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp H>, <&kp NUHS>;
         };
         td_a_ae: td_a_ae {
             compatible = "zmk,behavior-tap-dance";
@@ -111,7 +110,7 @@
             label = "TAP_DANCE_S_SS";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
-            bindings = <&hm LALT S>, <&kp MINUS>;
+            bindings = <&dollar>, <&kp MINUS>;
         };
         td_d_capsword: td_d_capsword {
             compatible = "zmk,behavior-tap-dance";
@@ -132,38 +131,38 @@
             // | |  Z  |  X  |  C  |  V  |  B  |        |  N  |  M   |  ,  |  .  |  -  | |
             //               | DOWN | UP | SPC |        | RET | BSPC | DEL |
             bindings = <
-                &none   &kp Q   &kp W   &kp E   &kp R   &kp T       &kp Y    &td_u_ue   &td_i_pipe   &td_o_oe   &kp P  &none
-                &none   &td_a_ae   &td_s_ss   &td_d_capsword   &hm LGUI F   &kp G        &kp H    &hm RGUI J   &hm RSHIFT K   &hm RALT L   &td_quote  &none
-                &none   &kp Z   &kp X   &kp C   &kp V   &kp B       &kp N    &kp M   &comma &dot    &kp SLASH  &none
-                                    &lt 2 DOWN    &lt 1 UP  &hm CAPSLOCK SPACE      &hm CAPSLOCK RET  &kp BSPC    &kp DEL
+                &none   &kp Q      &kp W      &kp E            &kp R        &kp T       &kp Y       &td_u_ue     &td_i_pipe     &td_o_oe     &kp P      &none
+                &none   &td_a_ae   &td_s_ss   &td_d_capsword   &hm LGUI F   &kp G       &td_h_hash  &hm RGUI J   &hm RSHIFT K   &hm RALT L   &td_quote  &none
+                &none   &kp Z      &kp X      &kp C            &kp V        &kp B       &kp N       &kp M        &comma         &dot         &kp SLASH  &none
+                                       &lt 2 DOWN    &lt 1 UP  &hm CAPSLOCK SPACE       &hm CAPSLOCK RET  &kp BSPC    &kp DEL
             >;
         };
 
         fn_layer {
             // -----------------------------------------------------------------------------------------
-            // | |       |      |        |      | |        | | | | | | |
-            // | | LCTRL | LALT | LSHIFT | LGUI | |        | | | | | | |
-            // | |       |      |        |      | |        | | | | | | |
-            //                              | | | |        | ESC | LEFT | RIGHT |
+            // | |       |      |        |       |      |        | F1 | F2 | F3 | F10 | VOL_UP   | |
+            // | | LCTRL | LALT | LSHIFT | LGUI  |      |        | F4 | F5 | F6 | F11 | MUTE     | |
+            // | | UNDO  | CUT  | COPY   | PASTE | REDO |        | F7 | F8 | F9 | F12 | VOL_DOWN | |
+            //                  |        |       |      |        | ESC | LEFT | RIGHT |
             bindings = <
-                &trans   &none       &none      &none        &none      &none       &none    &none   &none   &none   &none  &trans
-                &trans   &kp LCTRL   &kp LALT   &kp LSHIFT   &kp LGUI   &none       &none    &none   &none   &none   &none  &trans
-                &trans   &none       &none      &none        &none      &none       &none    &none   &none   &none   &none  &trans
-                                                &none        &none      &none       &hm CAPSLOCK ESC    &kp LEFT   &kp DOWN
+                &trans   &none       &none      &none        &none        &none            &kp F1    &kp F2   &kp F2   &kp F10   &kp C_VOL_UP  &trans
+                &trans   &kp LCTRL   &kp LALT   &kp LSHIFT   &kp LGUI     &none            &kp F4    &kp F5   &kp F6   &kp F11   &kp C_MUTE    &trans
+                &trans   &kp K_UNDO  &kp K_CUT  &kp K_COPY   &kp K_PASTE  &kp K_REDO       &kp F7    &kp F8   &kp F9   &kp F12   &kp C_VOL_DN  &trans
+                                                &none        &none        &none            &hm CAPSLOCK ESC    &kp LEFT   &kp RIGHT
             >;
         };
 
         num_layer {
             // -----------------------------------------------------------------------------------------
-            // | |       |      |        |      | |        | | | | | | |
-            // | | LCTRL | LALT | LSHIFT | LGUI | |        | | | | | | |
-            // | |       |      |        |      | |        | | | | | | |
-            //                              | | | |        | TAB | < | > |
+            // | |       |      |        |      | |        | 1 | 2 | 3 | + | - | |
+            // | | LCTRL | LALT | LSHIFT | LGUI | |        | 4 | 5 | 6 | ( | ) | |
+            // | |       |      |        |      | |        | 7 | 8 | 9 | * | / | |
+            //                              | | | |        | TAB | 0 | > |
             bindings = <
                 &trans  &trans  &trans  &trans  &trans  &trans       &none    &none   &none   &none   &none  &trans
                 &trans  &trans  &trans  &trans  &trans  &trans       &none    &none   &none   &none   &none  &trans
                 &trans  &trans  &trans  &trans  &trans  &trans       &none    &none   &none   &none   &none  &trans
-                                        &trans  &trans  &trans       &hm CAPSLOCK TAB    &kp GRAVE   &kp LS(GRAVE)
+                                        &trans  &trans  &trans       &hm CAPSLOCK TAB    &kp N0   &kp GRAVE
             >;
         };
     };
