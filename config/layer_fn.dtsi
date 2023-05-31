@@ -1,0 +1,17 @@
+/*
+    ╭───────────────────────╮ ╭────────────────────────────╮
+    │                       │ │  F1  F2  F3  F10  VOL_UP   │
+    │ CTRL ALT CMD SHIFT    │ │  F4  F5  F6  F11  MUTE     │
+    │                       │ │  F7  F8  F9  F12  VOL_DOWN │
+    ╰─────────╮             │ │ ESC LEFT RIGHT ╭───────────╯
+              ╰─────────────╯ ╰────────────────╯
+*/
+
+fn_layer {
+    bindings = <
+        &trans   &none       &none      &none      &none      &none         &kp F1   &kp F2   &kp F2   &kp F10   &mm_C_VOL_UP   &trans
+        &trans   &kp LCTRL   &kp LALT   &kp LGUI   &kp LSHFT   &none        &kp F4   &kp F5   &kp F6   &kp F11   &mm_C_MUTE     &trans
+        &trans   &none       &none      &none      &none      &none         &kp F7   &kp F8   &kp F9   &kp F12   &mm_C_VOL_DN   &trans
+                                        &none      &none      &none         &hm HYP ESC   &kp LEFT   &kp RIGHT
+    >;
+};

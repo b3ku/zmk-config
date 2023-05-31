@@ -1,0 +1,13 @@
+#include <dt-bindings/zmk/keys.h>
+
+#define HYP (CAPSLOCK)
+#define DE_AE (SINGLE_QUOTE)
+#define DE_OE (SEMICOLON)
+#define DE_UE (LEFT_BRACKET)
+#define DE_SZ (MINUS)
+#define DE_DASH (SLASH)
+#define DE_HASH (BACKSLASH)
+#define DE_BACKTICK (EQUAL)
+
+#define l_fn     1
+#define l_num    2
