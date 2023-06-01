@@ -1,14 +1,5 @@
-#define mm(name, key, modded, mods)         \
-  mm_##name: mm##name {                     \
-    compatible = "zmk,behavior-mod-morph";  \
-    label = "MOD_MORPH_##name";             \
-    #binding-cells = <0>;                   \
-    bindings = <key>, <modded>;             \
-    mods = <mods>;                          \
-};
-
 #define td(name, tap, dance)                \
-  td_##name: td##name {                     \
+  td_##name: td_##name {                    \
     compatible = "zmk,behavior-tap-dance";  \
     label = "TAP_DANCE_##name";             \
     #binding-cells = <0>;                   \
@@ -17,38 +8,7 @@
 };
 
 behaviors {
-    hm: homerow_mods {
-        compatible = "zmk,behavior-hold-tap";
-        label = "HOMEROW_MODS";
-        #binding-cells = <2>;
-        tapping-term-ms = <200>;
-        quick-tap-ms = <0>;
-        flavor = "balanced";
-        bindings = <&kp>, <&kp>;
-    };
-
-    mm(COMMA, &kp COMMA, &kp LS(DE_SZ), (MOD_LALT|MOD_RALT))
-    mm(DOT, &kp DOT, &kp LS(N1), (MOD_LALT|MOD_RALT))
-    mm(QUOTE, &hm RCTRL LS(DE_HASH), &kp LS(N2), (MOD_LSFT|MOD_RSFT))
-    mm(BSPC, &kp BSPC, &kp DEL, (MOD_LSFT|MOD_RSFT))
-
-    mm(C_VOL_UP, &kp C_VOL_UP, &kp C_NEXT, (MOD_LSFT|MOD_RSFT))
-    mm(C_VOL_DN, &kp C_VOL_DN, &kp C_PREV, (MOD_LSFT|MOD_RSFT))
-    mm(C_MUTE, &kp C_MUTE, &kp C_PLAY_PAUSE, (MOD_LSFT|MOD_RSFT))
-
-    mm(MULTIPLY, &kp KP_MULTIPLY, &kp CARET, (MOD_LSFT|MOD_RSFT))
-    mm(DIVIDE, &kp KP_DIVIDE, &kp PERCENT, (MOD_LSFT|MOD_RSFT))
-    mm(LPAR, &kp LPAR, &kp LBRC, (MOD_LSFT|MOD_RSFT))
-    mm(RPAR, &kp RPAR, &kp RBRC, (MOD_LSFT|MOD_RSFT))
-
     td(U_UE, &kp U, &kp DE_UE)
     td(I_PIPE, &kp I, &kp LA(N7))
     td(O_OE, &kp O, &kp DE_OE)
-    td(A_AE, &hm LCTRL A, &kp DE_AE)
-    td(S_SZ, &hm LALT S, &kp DE_SZ)
-    td(F_CAPS_WORD, &hm LSHIFT F, &caps_word)
-    td(H_HASH, &kp H, &kp DE_HASH)
-    td(QUOTES, &mm_QUOTE, &kp LS(DE_BACKTICK))
-    td(LBRACKETS, &mm_LPAR, &kp LBKT)
-    td(RBRACKETS, &mm_RPAR, &kp RBKT)
 };

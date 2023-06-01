@@ -10,24 +10,11 @@
 
 #include "config.dtsi"
 
-#define td(name, tap, dance)                \
-  td_##name: td_##name {                     \
-    compatible = "zmk,behavior-tap-dance";  \
-    label = "TAP_DANCE_##name";             \
-    #binding-cells = <0>;                   \
-    tapping-term-ms = <200>;                \
-    bindings = <tap>, <dance>;              \
-};
-
 / {
-/*
     #include "behaviors.dtsi"
+/*
     #include "macros.dtsi"
     #include "combos.dtsi"
-*/
-    behaviors {
-        td(U_UE, &kp U, &kp DE_UE)
-    };
 
     keymap {
         compatible = "zmk,keymap";
