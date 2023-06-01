@@ -8,7 +8,21 @@
 };
 
 behaviors {
+    hm: homerow_mods {
+        compatible = "zmk,behavior-hold-tap";
+        label = "HOMEROW_MODS";
+        #binding-cells = <2>;
+        tapping-term-ms = <200>;
+        quick-tap-ms = <0>;
+        flavor = "balanced";
+        bindings = <&kp>, <&kp>;
+    };
+
     td(U_UE, &kp U, &kp DE_UE)
     td(I_PIPE, &kp I, &kp LA(N7))
     td(O_OE, &kp O, &kp DE_OE)
+    td(A_AE, &hm LCTRL A, &kp DE_AE)
+    td(S_SZ, &hm LALT S, &kp DE_SZ)
+    td(F_CAPS_WORD, &hm LSHIFT F, &caps_word)
+    td(H_HASH, &kp H, &kp DE_HASH)
 };

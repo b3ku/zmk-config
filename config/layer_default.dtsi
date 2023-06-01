@@ -18,8 +18,8 @@ default_layer {
     */
     bindings = <
         &none   &kp Q      &kp W      &kp E        &kp R             &kp T         &kp Y        &td_U_UE       &td_I_PIPE   &td_O_OE     &kp P         &none
-        &none   &kp A   &kp S   &kp D   &kp F   &kp G         &kp H   &kp J   &kp K       &kp L     &kp L         &none
-        &none   &kp Z   &kp X   &kp C   &kp V   &kp B         &kp N   &kp M   &kp COMMA   &kp DOT   &kp DE_DASH   &none
-                                &none   &none   &none         &none   &none   &none
+        &none   &td_A_AE   &td_S_SZ   &hm LGUI D   &td_F_CAPS_WORD   &kp G         &td_H_HASH   &hm RSHIFT J   &hm RGUI K   &hm RALT L   &none         &none
+        &none   &kp Z      &kp X      &kp C        &kp V             &kp B         &kp N        &kp M          &none        &none        &kp DE_DASH   &none
+                              &lt l_num DOWN   &lt l_fn UP   &hm HYP SPACE         &hm HYP RET   &none   &kp TAB
     >;
 };
