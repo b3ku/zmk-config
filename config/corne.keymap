@@ -27,7 +27,7 @@
 */
     behaviors {
         td(U_UE, &kp U, &kp DE_UE)
-    }
+    };
 
     keymap {
         compatible = "zmk,keymap";
