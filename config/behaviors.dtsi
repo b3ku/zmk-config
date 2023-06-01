@@ -1,3 +1,12 @@
+#define mm(name, key, modded, mods)         \
+  mm_##name: mm_##name {                    \
+    compatible = "zmk,behavior-mod-morph";  \
+    label = "MOD_MORPH_##name";             \
+    #binding-cells = <0>;                   \
+    bindings = <key>, <modded>;             \
+    mods = <mods>;                          \
+};
+
 #define td(name, tap, dance)                \
   td_##name: td_##name {                    \
     compatible = "zmk,behavior-tap-dance";  \
@@ -17,6 +26,10 @@ behaviors {
         flavor = "balanced";
         bindings = <&kp>, <&kp>;
     };
+
+    mm(COMMA, &kp COMMA, &kp LS(DE_SZ), (MOD_LALT|MOD_RALT))
+    mm(DOT, &kp DOT, &kp LS(N1), (MOD_LALT|MOD_RALT))
+    mm(BSPC, &kp BSPC, &kp DEL, (MOD_LSFT|MOD_RSFT))
 
     td(U_UE, &kp U, &kp DE_UE)
     td(I_PIPE, &kp I, &kp LA(N7))
