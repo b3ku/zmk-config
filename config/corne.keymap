@@ -15,6 +15,7 @@
 /*
     #include "macros.dtsi"
     #include "combos.dtsi"
+*/
 
     keymap {
         compatible = "zmk,keymap";
