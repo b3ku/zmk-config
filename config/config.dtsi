@@ -1,6 +1,7 @@
 #include <dt-bindings/zmk/keys.h>
 
-#define HYP (CAPSLOCK)
+#define LHYP (LC(LA(LGUI)))
+#define RHYP (RC(RA(RGUI)))
 #define DE_AE (SINGLE_QUOTE)
 #define DE_OE (SEMICOLON)
 #define DE_UE (LEFT_BRACKET)
