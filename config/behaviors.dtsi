@@ -1,21 +1,3 @@
-#define mm(name, key, modded, the_mods)     \
-  mm_##name: mm_##name {                    \
-    compatible = "zmk,behavior-mod-morph";  \
-    label = "MOD_MORPH_##name";             \
-    #binding-cells = <0>;                   \
-    bindings = <key>, <modded>;             \
-    mods = <the_mods>;                      \
-};
-
-#define td(name, tap, dance)                \
-  td_##name: td_##name {                    \
-    compatible = "zmk,behavior-tap-dance";  \
-    label = "TAP_DANCE_##name";             \
-    #binding-cells = <0>;                   \
-    tapping-term-ms = <200>;                \
-    bindings = <tap>, <dance>;              \
-};
-
 behaviors {
     hm: homerow_mods {
         compatible = "zmk,behavior-hold-tap";
@@ -27,29 +9,155 @@ behaviors {
         bindings = <&kp>, <&kp>;
     };
 
-    mm(COMMA, &kp COMMA, &kp LS(DE_SZ), (MOD_LALT|MOD_RALT))
-    mm(DOT, &kp DOT, &kp LS(N1), (MOD_LALT|MOD_RALT))
-    mm(QUOTE, &hm RCTRL LS(DE_HASH), &kp LS(N2), (MOD_LSFT|MOD_RSFT))
-    mm(BSPC, &kp BSPC, &kp DEL, (MOD_LSFT|MOD_RSFT))
+    mm_COMMA: mm_COMMA {
+        compatible = "zmk,behavior-mod-morph";
+        label = "MOD_MORPH_COMMA";
+        #binding-cells = <0>;
+        bindings = <&kp COMMA>, <&kp LS(DE_SZ)>;
+        mods = <(MOD_LALT|MOD_RALT)>;
+    };
+    mm_DOT: mm_DOT {
+        compatible = "zmk,behavior-mod-morph";
+        label = "MOD_MORPH_DOT";
+        #binding-cells = <0>;
+        bindings = <&kp DOT>, <&kp LS(N1)>;
+        mods = <(MOD_LALT|MOD_RALT)>;
+    };
+    mm_QUOTE: mm_QUOTE {
+        compatible = "zmk,behavior-mod-morph";
+        label = "MOD_MORPH_QUOTE";
+        #binding-cells = <0>;
+        bindings = <&hm RCTRL LS(DE_HASH)>, <&kp LS(N2)>;
+        mods = <(MOD_LSFT|MOD_RSFT)>;
+    };
+    mm_BSPC: mm_BSPC {
+        compatible = "zmk,behavior-mod-morph";
+        label = "MOD_MORPH_BSPC";
+        #binding-cells = <0>;
+        bindings = <&kp BSPC>, <&kp DEL>;
+        mods = <(MOD_LSFT|MOD_RSFT)>;
+    };
 
-    mm(C_VOL_UP, &kp C_VOL_UP, &kp C_NEXT, (MOD_LSFT|MOD_RSFT))
-    mm(C_VOL_DN, &kp C_VOL_DN, &kp C_PREV, (MOD_LSFT|MOD_RSFT))
-    mm(C_MUTE, &kp C_MUTE, &kp C_PLAY_PAUSE, (MOD_LSFT|MOD_RSFT))
+    mm_C_VOL_UP: mm_C_VOL_UP {
+        compatible = "zmk,behavior-mod-morph";
+        label = "MOD_MORPH_C_VOL_UP";
+        #binding-cells = <0>;
+        bindings = <&kp C_VOL_UP>, <&kp C_NEXT>;
+        mods = <(MOD_LSFT|MOD_RSFT)>;
+    };
+    mm_C_VOL_DN: mm_C_VOL_DN {
+        compatible = "zmk,behavior-mod-morph";
+        label = "MOD_MORPH_C_VOL_DN";
+        #binding-cells = <0>;
+        bindings = <&kp C_VOL_DN>, <&kp C_PREV>;
+        mods = <(MOD_LSFT|MOD_RSFT)>;
+    };
+    mm_C_MUTE: mm_C_MUTE {
+        compatible = "zmk,behavior-mod-morph";
+        label = "MOD_MORPH_C_MUTE";
+        #binding-cells = <0>;
+        bindings = <&kp C_MUTE>, <&kp C_PLAY_PAUSE>;
+        mods = <(MOD_LSFT|MOD_RSFT)>;
+    };
 
-    mm(MULTIPLY, &kp KP_MULTIPLY, &kp CARET, (MOD_LSFT|MOD_RSFT))
-    mm(DIVIDE, &kp KP_DIVIDE, &kp PERCENT, (MOD_LSFT|MOD_RSFT))
-    mm(LPAR, &kp LPAR, &kp LBRC, (MOD_LSFT|MOD_RSFT))
-    mm(RPAR, &kp RPAR, &kp RBRC, (MOD_LSFT|MOD_RSFT))
+    mm_MULTIPLY: mm_MULTIPLY {
+        compatible = "zmk,behavior-mod-morph";
+        label = "MOD_MORPH_MULTIPLY";
+        #binding-cells = <0>;
+        bindings = <&kp KP_MULTIPLY>, <&kp CARET>;
+        mods = <(MOD_LSFT|MOD_RSFT)>;
+    };
+    mm_DIVIDE: mm_DIVIDE {
+        compatible = "zmk,behavior-mod-morph";
+        label = "MOD_MORPH_DIVIDE";
+        #binding-cells = <0>;
+        bindings = <&kp KP_DIVIDE>, <&kp PERCENT>;
+        mods = <(MOD_LSFT|MOD_RSFT)>;
+    };
+    mm_LPAR: mm_LPAR {
+        compatible = "zmk,behavior-mod-morph";
+        label = "MOD_MORPH_LPAR";
+        #binding-cells = <0>;
+        bindings = <&kp LPAR>, <&kp LBRC>;
+        mods = <(MOD_LSFT|MOD_RSFT)>;
+    };
+    mm_RPAR: mm_RPAR {
+        compatible = "zmk,behavior-mod-morph";
+        label = "MOD_MORPH_RPAR";
+        #binding-cells = <0>;
+        bindings = <&kp RPAR>, <&kp RBRC>;
+        mods = <(MOD_LSFT|MOD_RSFT)>;
+    };
 
-    td(U_UE, &kp U, &kp DE_UE)
-    td(I_PIPE, &kp I, &kp LA(N7))
-    td(O_OE, &kp O, &kp DE_OE)
-    td(A_AE, &hm LCTRL A, &kp DE_AE)
-    td(S_SZ, &hm LALT S, &kp DE_SZ)
-    td(F_CAPS_WORD, &hm LSHIFT F, &caps_word)
-    td(H_HASH, &kp H, &kp DE_HASH)
-    td(QUOTES, &mm_QUOTE, &kp LS(DE_BACKTICK))
+    td_U_UE: td_U_UE {
+        compatible = "zmk,behavior-tap-dance";
+        label = "TAP_DANCE_U_UE";
+        #binding-cells = <0>;
+        tapping-term-ms = <200>;
+        bindings = <&kp U>, <&kp DE_UE>;
+    };
+    td_I_PIPE: td_I_PIPE {
+        compatible = "zmk,behavior-tap-dance";
+        label = "TAP_DANCE_I_PIPE";
+        #binding-cells = <0>;
+        tapping-term-ms = <200>;
+        bindings = <&kp I>, <&kp LA(N7)>;
+    };
+    td_O_OE: td_O_OE {
+        compatible = "zmk,behavior-tap-dance";
+        label = "TAP_DANCE_O_OE";
+        #binding-cells = <0>;
+        tapping-term-ms = <200>;
+        bindings = <&kp O>, <&kp DE_OE>;
+    };
+    td_A_AE: td_A_AE {
+        compatible = "zmk,behavior-tap-dance";
+        label = "TAP_DANCE_A_AE";
+        #binding-cells = <0>;
+        tapping-term-ms = <200>;
+        bindings = <&hm LCTRL A>, <&kp DE_AE>;
+    };
+    td_S_SZ: td_S_SZ {
+        compatible = "zmk,behavior-tap-dance";
+        label = "TAP_DANCE_S_SZ";
+        #binding-cells = <0>;
+        tapping-term-ms = <200>;
+        bindings = <&hm LALT S>, <&kp DE_SZ>;
+    };
+    td_F_CAPS_WORD: td_F_CAPS_WORD {
+        compatible = "zmk,behavior-tap-dance";
+        label = "TAP_DANCE_F_CAPS_WORD";
+        #binding-cells = <0>;
+        tapping-term-ms = <200>;
+        bindings = <&hm LSHIFT F>, <&caps_word>;
+    };
+    td_H_HASH: td_H_HASH {
+        compatible = "zmk,behavior-tap-dance";
+        label = "TAP_DANCE_H_HASH";
+        #binding-cells = <0>;
+        tapping-term-ms = <200>;
+        bindings = <&kp H>, <&kp DE_HASH>;
+    };
+    td_QUOTES: td_QUOTES {
+        compatible = "zmk,behavior-tap-dance";
+        label = "TAP_DANCE_QUOTES";
+        #binding-cells = <0>;
+        tapping-term-ms = <200>;
+        bindings = <&mm_QUOTE>, <&kp LS(DE_BACKTICK)>;
+    };
 
-    td(LBRACKETS, &mm_LPAR, &kp LBKT)
-    td(RBRACKETS, &mm_RPAR, &kp RBKT)
+    td_LBRACKETS: td_LBRACKETS {
+        compatible = "zmk,behavior-tap-dance";
+        label = "TAP_DANCE_LBRACKETS";
+        #binding-cells = <0>;
+        tapping-term-ms = <200>;
+        bindings = <&mm_LPAR>, <&kp LBKT>;
+    };
+    td_RBRACKETS: td_RBRACKETS {
+        compatible = "zmk,behavior-tap-dance";
+        label = "TAP_DANCE_RBRACKETS";
+        #binding-cells = <0>;
+        tapping-term-ms = <200>;
+        bindings = <&mm_RPAR>, <&kp RBKT>;
+    };
 };
